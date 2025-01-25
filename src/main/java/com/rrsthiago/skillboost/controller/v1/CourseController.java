@@ -1,6 +1,7 @@
 package com.rrsthiago.skillboost.controller.v1;
 
-import com.rrsthiago.skillboost.model.Course;
+import com.rrsthiago.skillboost.controller.v1.mapper.CourseMapper;
+import com.rrsthiago.skillboost.dto.CourseDto;
 import com.rrsthiago.skillboost.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class CourseController {
     private static final String PATH = "/v1/courses";
     private static final String ID = "id";
     private static final String PATH_ID = "/v1/courses/{id}";
+
+    @Autowired
+    private CourseMapper courseMapper;
 
     @Autowired
     private CourseService courseService;
@@ -38,22 +42,22 @@ public class CourseController {
     }
 
     @PostMapping(PATH)
-    public ResponseEntity<?> create(@RequestBody Course course) {
-        var createdCourse = courseService.create(course);
+    public ResponseEntity<?> create(@RequestBody CourseDto course) {
+        var createdCourse = courseService.create(courseMapper.dtoToModel(course));
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(createdCourse);
+                .body(courseMapper.modelToDto(createdCourse));
     }
 
     @PutMapping(PATH_ID)
     public ResponseEntity<?> update(@PathVariable(ID) BigInteger id,
-                                    @RequestBody Course course) {
-        var updatedCourse = courseService.update(id, course);
+                                    @RequestBody CourseDto course) {
+        var updatedCourse = courseService.update(id, courseMapper.dtoToModel(course));
 
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(updatedCourse);
+                .body(courseMapper.modelToDto(updatedCourse));
     }
 
     @DeleteMapping(PATH_ID)
