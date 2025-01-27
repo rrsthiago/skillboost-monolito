@@ -29,10 +29,6 @@ public class CourseActivity {
     private CourseActivityType activityType;
 
     @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "id")
-    private Course course;
-
-    @ManyToOne
     @JoinColumn(name = "professional_id", referencedColumnName = "id")
     private Professional professional;
 

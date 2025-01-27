@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigInteger;
+import java.util.Set;
 
 @Data
 @Builder
@@ -35,5 +36,9 @@ public class Course {
 
     @Column(name = "goal_point")
     private Integer goalPoint;
+
+    @OneToMany
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    private Set<CourseActivity> courseActivities;
 
 }
