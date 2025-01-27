@@ -27,10 +27,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "profile_id")
-    private BigInteger profileId;
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "profile_id", referencedColumnName = "id", insertable = false, updatable = false)
     private Profile profile;
 

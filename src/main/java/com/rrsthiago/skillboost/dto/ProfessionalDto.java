@@ -29,7 +29,7 @@ public class ProfessionalDto {
     @NotNull
     private String registerNumber;
 
-//    @NotNull
+    @NotNull
     private UserDto user;
 
 }

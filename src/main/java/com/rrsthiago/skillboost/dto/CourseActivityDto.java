@@ -1,6 +1,7 @@
 package com.rrsthiago.skillboost.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
@@ -23,12 +24,12 @@ public class CourseActivityDto {
     @NotNull
     private Integer score;
 
-//    @Valid
-//    @NotNull
+    @Valid
+    @NotNull
     private CourseActivityTypeDto activityType;
 
-//    @Valid
-//    @NotNull
+    @Valid
+    @NotNull
     private ProfessionalDto professional;
 
 }

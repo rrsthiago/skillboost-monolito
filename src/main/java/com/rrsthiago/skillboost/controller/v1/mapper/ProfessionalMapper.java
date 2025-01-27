@@ -11,6 +11,8 @@ public class ProfessionalMapper {
         return Professional.builder()
                 .id(professionalDto.getId())
                 .name(professionalDto.getName())
+                .email(professionalDto.getEmail())
+                .registerNumber(professionalDto.getRegisterNumber())
                 .build();
     }
 
@@ -18,6 +20,8 @@ public class ProfessionalMapper {
         return ProfessionalDto.builder()
                 .id(professional.getId())
                 .name(professional.getName())
+                .email(professional.getEmail())
+                .registerNumber(professional.getRegisterNumber())
                 .build();
     }
 
