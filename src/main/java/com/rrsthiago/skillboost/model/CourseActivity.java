@@ -25,6 +25,10 @@ public class CourseActivity {
     private Integer score;
 
     @ManyToOne
+    @JoinColumn(name = "course_id", referencedColumnName = "id")
+    private Course course;
+
+    @ManyToOne
     @JoinColumn(name = "activity_type", referencedColumnName = "id")
     private CourseActivityType activityType;
 

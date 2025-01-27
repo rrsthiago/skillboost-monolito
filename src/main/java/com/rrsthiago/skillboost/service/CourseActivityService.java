@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -23,9 +24,8 @@ public class CourseActivityService {
         return findCourseActivityById(courseId, activityId);
     }
 
-    public Set<CourseActivity> list(BigInteger courseId) {
-        return null;
-//        return courseActivityRepository.findAllByCourseId(courseId);
+    public List<CourseActivity> list(BigInteger courseId) {
+        return courseActivityRepository.findAllByCourseId(courseId);
     }
 
     public CourseActivity update(BigInteger courseId, CourseActivity courseActivity) {
