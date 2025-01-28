@@ -13,9 +13,13 @@ import java.util.List;
 public class CourseActivityService {
 
     @Autowired
+    private CourseService courseService;
+
+    @Autowired
     private CourseActivityRepository courseActivityRepository;
 
-    public CourseActivity create(CourseActivity courseActivity) {
+    public CourseActivity create(BigInteger courseId, CourseActivity courseActivity) {
+        courseService.get(courseId);
         return courseActivityRepository.save(courseActivity);
     }
 

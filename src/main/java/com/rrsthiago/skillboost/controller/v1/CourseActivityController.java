@@ -44,8 +44,9 @@ public class CourseActivityController {
     }
 
     @PostMapping(PATH)
-    public ResponseEntity<?> create(@RequestBody CourseActivityDto courseActivityDto) {
-        var createdCourseActivity = courseActivityService.create(courseActivityMapper.dtoToModel(courseActivityDto));
+    public ResponseEntity<?> create(@PathVariable(COURSE_ID) BigInteger courseId,
+                                    @RequestBody CourseActivityDto courseActivityDto) {
+        var createdCourseActivity = courseActivityService.create(courseId, courseActivityMapper.dtoToModel(courseActivityDto));
 
         return ResponseEntity
                 .status(HttpStatus.OK)
