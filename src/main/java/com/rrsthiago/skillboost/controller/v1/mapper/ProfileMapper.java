@@ -4,6 +4,8 @@ import com.rrsthiago.skillboost.dto.ProfileDto;
 import com.rrsthiago.skillboost.model.Profile;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
+
 @Component
 public class ProfileMapper {
 
@@ -17,6 +19,12 @@ public class ProfileMapper {
         return ProfileDto.builder()
                 .id(model.getId())
                 .role(model.getRole())
+                .build();
+    }
+
+    public Profile idDtoToModel(BigInteger profileId) {
+        return Profile.builder()
+                .id(profileId)
                 .build();
     }
 

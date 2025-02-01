@@ -5,6 +5,8 @@ import com.rrsthiago.skillboost.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
+
 @Component
 public class UserMapper {
 
@@ -16,7 +18,7 @@ public class UserMapper {
                 .id(userDto.getId())
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
-                .profile(profileMapper.dtoToModel(userDto.getProfile()))
+                .profile(profileMapper.idDtoToModel(userDto.getProfileId()))
                 .build();
     }
 
@@ -26,6 +28,12 @@ public class UserMapper {
                 .email(model.getEmail())
                 .password(model.getPassword())
                 .profile(profileMapper.modelToDto(model.getProfile()))
+                .build();
+    }
+
+    public User idDtoToModel(BigInteger userId) {
+        return User.builder()
+                .id(userId)
                 .build();
     }
 
