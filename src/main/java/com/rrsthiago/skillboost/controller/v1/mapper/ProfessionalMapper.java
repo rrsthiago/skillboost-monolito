@@ -4,6 +4,8 @@ import com.rrsthiago.skillboost.dto.ProfessionalDto;
 import com.rrsthiago.skillboost.model.Professional;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
+
 @Component
 public class ProfessionalMapper {
 
@@ -22,6 +24,12 @@ public class ProfessionalMapper {
                 .name(professional.getName())
                 .email(professional.getEmail())
                 .registerNumber(professional.getRegisterNumber())
+                .build();
+    }
+
+    public Professional idDtoToModel(BigInteger professionalId) {
+        return Professional.builder()
+                .id(professionalId)
                 .build();
     }
 

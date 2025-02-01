@@ -1,7 +1,7 @@
 package com.rrsthiago.skillboost.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.validation.Valid;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,7 @@ import java.math.BigInteger;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CourseActivityDto {
 
@@ -24,12 +25,16 @@ public class CourseActivityDto {
     @NotNull
     private Integer score;
 
-    @Valid
     @NotNull
+    private BigInteger activityTypeId;
+
+    @NotNull
+    private BigInteger professionalId;
+
+    @Null
     private CourseActivityTypeDto activityType;
 
-    @Valid
-    @NotNull
+    @Null
     private ProfessionalDto professional;
 
 }
