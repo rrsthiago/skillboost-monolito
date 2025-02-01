@@ -1,5 +1,6 @@
 package com.rrsthiago.skillboost.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotNull;
@@ -26,7 +27,8 @@ public class UserDto {
     private String email;
 
     @NotNull
-    private String password;
+    @JsonIgnore
+    private String password; //Aplicação para fins didáticos. Nunca lidar com senhas dessa forma!
 
     @NotNull
     private BigInteger profileId;
