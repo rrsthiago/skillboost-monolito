@@ -55,8 +55,10 @@ public class CourseActivityController {
 
     @PutMapping(PATH_ID)
     public ResponseEntity<?> update(@PathVariable(COURSE_ID) BigInteger courseId,
+                                    @PathVariable(ACTIVITY_ID) BigInteger activityId,
                                     @RequestBody CourseActivityDto courseActivityDto) {
-        var updatedCourseActivity = courseActivityService.update(courseId, courseActivityMapper.dtoToModel(courseActivityDto));
+        var updatedCourseActivity = courseActivityService.update(courseId, activityId,
+                courseActivityMapper.dtoToModel(courseActivityDto));
 
         return ResponseEntity
                 .status(HttpStatus.OK)

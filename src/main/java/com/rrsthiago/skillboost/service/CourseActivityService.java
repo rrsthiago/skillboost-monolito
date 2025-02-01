@@ -36,8 +36,8 @@ public class CourseActivityService {
         return courseActivityRepository.findAllByCourseId(courseId);
     }
 
-    public CourseActivity update(BigInteger courseId, CourseActivity courseActivity) {
-        var existingCourseActivity = findCourseActivityById(courseId, courseActivity.getId());
+    public CourseActivity update(BigInteger courseId, BigInteger activityId, CourseActivity courseActivity) {
+        var existingCourseActivity = findCourseActivityById(courseId, activityId);
         existingCourseActivity.setScore(courseActivity.getScore());
         existingCourseActivity.setProfessional(courseActivity.getProfessional());
         existingCourseActivity.setActivityType(courseActivity.getActivityType());
