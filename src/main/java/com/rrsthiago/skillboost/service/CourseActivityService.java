@@ -1,6 +1,7 @@
 package com.rrsthiago.skillboost.service;
 
 import com.rrsthiago.skillboost.exception.ResourceNotFoundException;
+import com.rrsthiago.skillboost.model.Course;
 import com.rrsthiago.skillboost.model.CourseActivity;
 import com.rrsthiago.skillboost.repository.CourseActivityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class CourseActivityService {
 
     public CourseActivity create(BigInteger courseId, CourseActivity courseActivity) {
         courseService.get(courseId);
+        courseActivity.setCourse(Course.builder()
+                .id(courseId)
+                .build());
+
         return courseActivityRepository.save(courseActivity);
     }
 
