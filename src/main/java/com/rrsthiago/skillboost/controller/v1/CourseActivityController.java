@@ -69,7 +69,7 @@ public class CourseActivityController {
         courseActivityService.delete(courseId, activityId);
 
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.NO_CONTENT)
                 .build();
     }
 

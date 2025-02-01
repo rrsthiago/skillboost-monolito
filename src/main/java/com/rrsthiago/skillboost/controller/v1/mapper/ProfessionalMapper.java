@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Component
 public class ProfessionalMapper {
@@ -29,7 +30,7 @@ public class ProfessionalMapper {
                 .name(professional.getName())
                 .email(professional.getEmail())
                 .registerNumber(professional.getRegisterNumber())
-                .user(userMapper.modelToDto(professional.getUser()))
+                .user(Optional.ofNullable(professional.getUser()).map(userMapper::modelToDto).orElse(null))
                 .build();
     }
 
