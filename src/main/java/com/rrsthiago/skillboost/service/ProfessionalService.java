@@ -1,6 +1,7 @@
 package com.rrsthiago.skillboost.service;
 
 import com.rrsthiago.skillboost.exception.ResourceNotFoundException;
+import com.rrsthiago.skillboost.exception.UserDoesntExistException;
 import com.rrsthiago.skillboost.model.Professional;
 import com.rrsthiago.skillboost.repository.ProfessionalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,16 @@ public class ProfessionalService {
     @Autowired
     private ProfessionalRepository professionalRepository;
 
+    @Autowired
+    private UserService userService;
+
     public Professional create(Professional professional) {
+        try {
+            userService.get(professional.getUser().getId());
+        } catch (ResourceNotFoundException e) {
+            throw new UserDoesntExistException(professional.getUser().getId());
+        }
+
         return professionalRepository.save(professional);
     }
 
