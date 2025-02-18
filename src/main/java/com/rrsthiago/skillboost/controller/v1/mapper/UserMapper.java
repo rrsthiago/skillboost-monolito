@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Component
 public class UserMapper {
@@ -27,7 +28,7 @@ public class UserMapper {
                 .id(model.getId())
                 .email(model.getEmail())
                 .password(model.getPassword())
-                .profile(profileMapper.modelToDto(model.getProfile()))
+                .profile(Optional.ofNullable(model.getProfile()).map(profileMapper::modelToDto).orElse(null))
                 .build();
     }
 
