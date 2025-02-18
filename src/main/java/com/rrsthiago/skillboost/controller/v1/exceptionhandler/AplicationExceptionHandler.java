@@ -1,6 +1,7 @@
 package com.rrsthiago.skillboost.controller.v1.exceptionhandler;
 
 import com.rrsthiago.skillboost.exception.ResourceNotFoundException;
+import com.rrsthiago.skillboost.exception.UserDoesntExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,16 @@ public class AplicationExceptionHandler extends ResponseEntityExceptionHandler {
     })
     private ResponseEntity<?> handleResourceNotFoundException(RuntimeException e, WebRequest webRequest) {
         var httpStatus = HttpStatus.NOT_FOUND;
+        var problem = createProblemRfc7807(httpStatus, httpStatus.getReasonPhrase(), e.getMessage());
+
+        return ResponseEntity.status(httpStatus).body(problem);
+    }
+
+    @ExceptionHandler({
+            UserDoesntExistException.class
+    })
+    private ResponseEntity<?> handleInternalValidation(RuntimeException e, WebRequest webRequest) {
+        var httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
         var problem = createProblemRfc7807(httpStatus, httpStatus.getReasonPhrase(), e.getMessage());
 
         return ResponseEntity.status(httpStatus).body(problem);

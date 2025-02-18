@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -22,6 +23,12 @@ public class ProfessionalMapper {
                 .registerNumber(professionalDto.getRegisterNumber())
                 .user(userMapper.idDtoToModel(professionalDto.getUserId()))
                 .build();
+    }
+
+    public List<ProfessionalDto> modelsToDtos(List<Professional> professionals) {
+        return professionals.stream()
+                .map(this::modelToDto)
+                .toList();
     }
 
     public ProfessionalDto modelToDto(Professional professional) {
