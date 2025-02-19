@@ -39,7 +39,6 @@ public class UserMapperTest {
     @Test
     public void testModelToDto() {
         User user = UserMock.getUser();
-        when(profileMapper.modelToDto(user.getProfile())).thenReturn(ProfileMock.getProfileDto());
 
         UserDto userDto = userMapper.modelToDto(user);
 
