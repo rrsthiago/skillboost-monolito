@@ -32,33 +32,28 @@ public class ProfessionalServiceIT {
 
     @Test
     void shouldTestGetProfessional_returnSuccess() {
-        Professional professionalPayload = createProfessionalPayload();
-        testProfessional = professionalService.create(professionalPayload);
-        BigInteger professionalId = testProfessional.getId();
+        BigInteger professionalId = createTestProfessional();
 
         Professional professional = professionalService.get(professionalId);
 
         Assertions.assertNotNull(professional);
-        Assertions.assertEquals(professionalPayload.getName(), professional.getName());
-        Assertions.assertEquals(professionalPayload.getEmail(), professional.getEmail());
-        Assertions.assertEquals(professionalPayload.getRegisterNumber(), professional.getRegisterNumber());
+        Assertions.assertEquals(testProfessional.getName(), professional.getName());
+        Assertions.assertEquals(testProfessional.getEmail(), professional.getEmail());
+        Assertions.assertEquals(testProfessional.getRegisterNumber(), professional.getRegisterNumber());
     }
 
     @Test
     void shouldTestGetProfessionalsList_returnSuccess() {
-        Professional professionalPayload = createProfessionalPayload();
-        testProfessional = professionalService.create(professionalPayload);
+        createTestProfessional();
 
         List<Professional> professionals = professionalService.list();
 
-        Assertions.assertNotEquals(0, professionals.size());
+        Assertions.assertFalse(professionals.isEmpty());
     }
 
     @Test
     void shouldTestUpdateProfessional_returnSuccess() {
-        Professional professionalPayload = createProfessionalPayload();
-        testProfessional = professionalService.create(professionalPayload);
-        BigInteger professionalId = testProfessional.getId();
+        BigInteger professionalId = createTestProfessional();
 
         String updatedName = "Nome Alterado";
         String updatedEmail = "alterado@email.com";
@@ -82,12 +77,16 @@ public class ProfessionalServiceIT {
 
     @Test
     void shouldTestDeleteProfessional_returnSuccess() {
-        Professional professionalPayload = createProfessionalPayload();
-        testProfessional = professionalService.create(professionalPayload);
-        BigInteger professionalId = testProfessional.getId();
+        BigInteger professionalId = createTestProfessional();
         professionalService.delete(professionalId);
 
         Assertions.assertThrows(ResourceNotFoundException.class, () -> professionalService.get(professionalId));
+    }
+
+    private BigInteger createTestProfessional() {
+        Professional professionalPayload = createProfessionalPayload();
+        testProfessional = professionalService.create(professionalPayload);
+        return testProfessional.getId();
     }
 
     private Professional createProfessionalPayload() {
