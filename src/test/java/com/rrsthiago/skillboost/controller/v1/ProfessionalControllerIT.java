@@ -48,9 +48,9 @@ public class ProfessionalControllerIT {
                                 "}")
                         .contentType("application/json")
                         .accept("application/json")
-                        .when()
+                .when()
                         .post()
-                        .then()
+                .then()
                         .statusCode(HttpStatus.CREATED.value())
                         .extract()
                         .path("id");
@@ -63,9 +63,9 @@ public class ProfessionalControllerIT {
                 .body("{}")
                 .contentType("application/json")
                 .accept("application/json")
-                .when()
+        .when()
                 .post()
-                .then()
+        .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .body("detail", org.hamcrest.Matchers.containsString("Preenchimento invalido de um ou mais atributos"));
     }
@@ -76,9 +76,9 @@ public class ProfessionalControllerIT {
 
         given()
                 .pathParam("id", testProfessionalId)
-                .when()
+        .when()
                 .get("/{id}")
-                .then()
+        .then()
                 .statusCode(HttpStatus.OK.value());
     }
 
@@ -86,9 +86,9 @@ public class ProfessionalControllerIT {
     void shouldTestGetProfessionalById_returnNotFound() {
         given()
                 .pathParam("id", 0)
-                .when()
+        .when()
                 .get("/{id}")
-                .then()
+        .then()
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .body("detail", org.hamcrest.Matchers.containsString("Resource not found with id"));
     }
@@ -98,9 +98,9 @@ public class ProfessionalControllerIT {
         createTestProfessional();
 
         given()
-                .when()
+        .when()
                 .get()
-                .then()
+        .then()
                 .statusCode(HttpStatus.OK.value())
                 .body("size()", org.hamcrest.Matchers.greaterThan(0));
     }
@@ -122,9 +122,9 @@ public class ProfessionalControllerIT {
                         "}")
                 .contentType("application/json")
                 .accept("application/json")
-                .when()
+        .when()
                 .put("/{id}")
-                .then()
+        .then()
                 .statusCode(HttpStatus.OK.value())
                 .body("name", org.hamcrest.Matchers.equalTo(updatedName))
                 .body("email", org.hamcrest.Matchers.equalTo(updatedEmail))
@@ -137,9 +137,9 @@ public class ProfessionalControllerIT {
 
         given()
                 .pathParam("id", testProfessionalId)
-                .when()
+        .when()
                 .delete("/{id}")
-                .then()
+        .then()
                 .statusCode(HttpStatus.NO_CONTENT.value());
     }
 
