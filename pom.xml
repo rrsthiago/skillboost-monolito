@@ -19,8 +19,10 @@
 
     <properties>
         <java.version>23</java.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <maven.compiler.source>23</maven.compiler.source>
         <maven.compiler.target>23</maven.compiler.target>
+        <maven.compiler.proc>full</maven.compiler.proc>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.34</lombok.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
