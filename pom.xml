@@ -63,6 +63,12 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -86,6 +92,7 @@
                 <version>${jacoco-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
@@ -97,6 +104,16 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                            <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -105,7 +122,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <argLine>
-                        -javaagent:${settings.localRepository}/org/mockito/mockito-core/${mockito.version}/mockito-core-${mockito.version}.jar
+                        -javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco-maven-plugin.version}/org.jacoco.agent-${jacoco-maven-plugin.version}-runtime.jar=destfile=${project.build.directory}/jacoco.exec
                     </argLine>
                 </configuration>
             </plugin>

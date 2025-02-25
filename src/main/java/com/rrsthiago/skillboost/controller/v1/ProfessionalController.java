@@ -47,7 +47,7 @@ public class ProfessionalController {
         var professional = professionalService.create(professionalMapper.dtoToModel(dto));
 
         return ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.CREATED)
                 .body(professionalMapper.modelToDto(professional));
     }
 
